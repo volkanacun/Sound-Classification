@@ -30,43 +30,4 @@ pred = predict(model, './Prediction/Survey_G03_Pred/371059__joshuaempyre__duduk-
 print_leaderboard(pred, './data/')
 
 
-# %%
-history = model.fit(X_train,y_train,batch_size=100, epochs=100, validation_data=(X_test, y_test))
-model.summary()
-
-
-####### METRICS PLOTS #######
-print(history.history.keys())
-
-#Evaluate Model
-cm = confusion_matrix(y_test, pred)
-print (cm)
-print(f1_score(y_test, pred, average='micro'))
-print(accuracy_score(y_test,y_pred))
-print(roc_auc_score(y_test, y_pred))
-
-
-
-# Visualize Loss 
-# Get training and test loss histories
-import matplotlib.pyplot as plt
-
-# Plot Accuracy
-plt.plot(history.history['accuracy'])
-plt.plot(history.history['val_accuracy'])
-plt.title('Model Accuracy (300 epoch, 4x10 nodes)')
-plt.ylabel('accuracy')
-plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='lower right')
-plt.show()
-
-# Visualize Loss 
-plt.plot(history.history['loss'])
-plt.plot(history.history['val_loss'])
-plt.title('Model Loss (300 epoch, 4x10 nodes)')
-plt.ylabel('loss')
-plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='upper right')
-plt.show()
-
 
